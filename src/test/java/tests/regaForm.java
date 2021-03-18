@@ -36,27 +36,27 @@ public class regaForm {
 
         //date of birth
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOptionByValue("2");
-        $(".react-datepicker__year-select").selectOptionByValue("1996");
-        $(".react-datepicker__day.react-datepicker__day--002").click();
+        $(".react-datepicker__month-select").selectOption("April");
+        $(".react-datepicker__year-select").selectOption("1996");
+        $(".react-datepicker__day--002").click();
+
 
         //profile pic
         $("#uploadPicture").uploadFromClasspath("1596044545241977310.jpg");
 
         //location
         $("#currentAddress").setValue("Russia, Saint Petersburg");
-        $("#state").click();
         $("#react-select-3-input").setValue("NCR").pressEnter();
-        $("#city").click();
         $("#react-select-4-input").setValue("Delhi").pressEnter();
         $("#submit").click();
 
         //verification
-        $(".table").shouldHave(text("John Doe"),
+        $(".modal-content").shouldBe(visible);
+        $(".modal-content").shouldHave(text("John Doe"),
                 text("j.doe@mail.com"),
                 text("Male"),
                 text("1234567890"),
-                text("2 April, 1996"),
+                text("02 April,1996"),
                 text("English"),
                 text("Music, Sports, Reading"),
                 text("1596044545241977310.jpg"),
