@@ -1,15 +1,13 @@
 plugins {
-    id 'java-library'
+    id "java-library"
 }
 
 repositories {
     mavenCentral()
 }
 
-//обавим переменную, для быстрого контроля версий
 def selenideVersion = "5.19.0",
-    junitVersion = "571"
-
+    junitVersion = "5.7.1"
 
 dependencies {
     testImplementation (
@@ -18,12 +16,10 @@ dependencies {
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
 }
 
-//исправляет траблы с русским языком
 tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+    options.encoding = "UTF-8"
 }
 
 test {
     useJUnitPlatform()
 }
-
