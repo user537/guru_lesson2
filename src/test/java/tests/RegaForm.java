@@ -9,27 +9,38 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class regaForm {
+public class RegaForm {
 
     @BeforeAll
     static void setup() {
         Configuration.startMaximized = true;
     }
 
+    String firstName = "John";
+    String lastName = "Doe";
+    String userEmail = "j.doe@mail.com";
+    String userNumber = "1234567890";
+    String subject = "English";
+    String currentAddress = "Russia, Saint Petersburg";
+
+    //only in verification
+    String hobbie = "Music, Sports, Reading";
+    String birthDate ="02 April,1996";
+
     @Test
-    void FillTest() throws InterruptedException {
+    void FillTest() {
         //open url
         open("https://demoqa.com/automation-practice-form");
 
         //personal data
-        $("#firstName").setValue("John");
-        $("#lastName").setValue("Doe");
-        $("#userEmail").setValue("j.doe@mail.com");
+        $("#firstName").setValue(firstName);
+        $("#lastName").setValue(lastName);
+        $("#userEmail").setValue(userEmail);
         $(byText("Male")).click();
-        $("#userNumber").setValue("1234567890");
+        $("#userNumber").setValue(userNumber);
 
         //subjects
-        $("#subjectsInput").setValue("English").pressEnter();
+        $("#subjectsInput").setValue(subject).pressEnter();
         $(byText("Music")).click();
         $(byText("Sports")).click();
         $(byText("Reading")).click();
@@ -45,22 +56,22 @@ public class regaForm {
         $("#uploadPicture").uploadFromClasspath("1596044545241977310.jpg");
 
         //location
-        $("#currentAddress").setValue("Russia, Saint Petersburg");
+        $("#currentAddress").setValue(currentAddress);
         $("#react-select-3-input").setValue("NCR").pressEnter();
         $("#react-select-4-input").setValue("Delhi").pressEnter();
         $("#submit").click();
 
         //verification
         $(".modal-content").shouldBe(visible);
-        $(".modal-content").shouldHave(text("John Doe"),
-                text("j.doe@mail.com"),
+        $(".modal-content").shouldHave(text(firstName + " " + lastName),
+                text(userEmail),
                 text("Male"),
-                text("1234567890"),
-                text("02 April,1996"),
-                text("English"),
-                text("Music, Sports, Reading"),
+                text(userNumber),
+                text(birthDate),
+                text(subject),
+                text(hobbie),
                 text("1596044545241977310.jpg"),
-                text("Russia, Saint Petersburg"),
+                text(currentAddress),
                 text("NCR Delhi"));
     }
 }
